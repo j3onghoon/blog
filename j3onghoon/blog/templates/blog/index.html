@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+
 {% block title %} 정훈이의 블로그 {% endblock %}
 {% block content %}
   {% if latest_post_list %}
@@ -14,10 +15,10 @@
       <div class="card-body mt-2">
         {% if post.content|wordcount > 20 %}
           <p> {{ post.content | truncatewords:20 }}
-            <a href="{% url 'blog:detail' % post.id}">더보기</a>
+            <a href="{% url 'blog:detail' post.id %}">더보기</a>
           </p>
         {% else %}
-          <p> {{ post.content }} <a href="{% url 'blog:detail' % post.id}">수정하기</a> </p>
+          <p> {{ post.content }} <a href="{% url 'blog:detail' post.id %}">수정하기</a> </p>
         {% endif %}
       </div>
     {% endfor %}
