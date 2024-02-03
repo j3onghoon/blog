@@ -1,2 +1,4 @@
-<h1>{{ post.title}} </h1>
-<p>{{ post.content }}</p>
+{% extends "blog/base.html" %}
+
+{% block title %} {{ post.title }} {% endblock %}
+{% block content %} {{ post.content }} {% endblock %}
