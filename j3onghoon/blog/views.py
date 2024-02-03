@@ -38,3 +38,8 @@ def post(request):
     category = Category.objects.filter(id=request.POST.get("category")).first()
     Post.objects.create(title=request.POST.get("title"), content=request.POST.get("content"), category=category)
     return redirect('blog:index')
+
+
+def review(request):
+    pass
+    return render(request, "blog/reveiw.html", context)
