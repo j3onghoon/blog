@@ -9,6 +9,8 @@ class Post(models.Model):
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True)
 
     created = models.DateTimeField(auto_now_add=True)
+    # todo
+    # updated 에 index 적용하는 것 생각해보기
     updated = models.DateTimeField(auto_now=True)
 
 
