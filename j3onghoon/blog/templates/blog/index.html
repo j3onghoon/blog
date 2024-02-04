@@ -4,7 +4,7 @@
 {% block content %}
   {% if latest_post_list %}
     <div class="d-flex flex-row-reverse">
-      <a href="{% url 'blog:new' %}"> <input type="submit" value="새 글 작성하기"> </a>
+      <a href="{% url 'blog:new' %}"> <button class="btn btn-primary">새 글 작성하기</button> </a>
     </div>
     {% for post in latest_post_list %}
       <div class="card mt-2">
