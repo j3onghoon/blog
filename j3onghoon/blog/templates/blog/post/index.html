@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between">
+<div>
+  <button class="btn btn-primary me-2" hx-get="/blog/post_all" hx-target="#posts" hx-trigger="click">전체 보기</input>
+  <button class="btn btn-primary" hx-get="/blog/post_list" hx-target="#posts" hx-trigger="click">일부 보기</button>
+</div>
+  <a href="{% url 'blog:new' %}"> <button class="btn btn-primary ">새 글 작성하기</button> </a>
+</div>
+<div id="posts">
+  {% for post in posts %}
+    <div class="card mt-3">
+      <div class="card-header">
+        {{ post.title }}
+      </div>
+      <div class="card-body">
+        {{ post.content|safe }}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

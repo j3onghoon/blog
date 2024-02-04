@@ -1,4 +1,6 @@
+# from django.core.paginator import Paginator
 from datetime import timedelta
+import markdown
 
 from django.db.models import Q
 from django.shortcuts import render, redirect
@@ -19,28 +21,20 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
 
 
-def review_all(request):
+def post_all(request):
     if 'HX-Request' not in request.headers:
         return redirect('/')
     posts = Post.objects.all()
-    return render(request, 'blog/review/all.html', {'posts': posts})
+    for post in posts:
+        post.content = markdown.markdown(post.content, extensions=['fenced_code', 'tables'])
+    return render(request, 'blog/post/all.html', {'posts': posts})
 
 
-def review_some(request):
-    if 'HX-Request' not in request.headers:
-        return redirect('/')
+def post_list(request):
     RETENTION_CURVES = [1, 3, 6, 30, 90, 180]
     retention_curve = Q()
     for curve in RETENTION_CURVES:
         retention_curve |= Q(updated__date=timezone.localdate() - timedelta(days=curve))
     posts = Post.objects.filter(retention_curve)
-    return render(request, 'blog/review/some.html', {'posts': posts})
-
-
-def review(request):
-    RETENTION_CURVES = [1, 3, 6, 30, 90, 180]
-    retention_curve = Q()
-    for curve in RETENTION_CURVES:
-        retention_curve |= Q(updated__date=timezone.localdate() - timedelta(days=curve))
-    posts = Post.objects.filter(retention_curve)
-    return render(request, 'blog/review/index.html', {'posts': posts})
+    template = 'blog/post/list.html' if request.headers.get('HX-Request') else 'blog/post/index.html'
+    return render(request, template, {'posts': posts})

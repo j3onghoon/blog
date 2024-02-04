@@ -4,7 +4,7 @@
     {{ post.title }}
   </div>
   <div class="card-body">
-    {{ post.content }}
+    {{ post.content|safe }}
   </div>
 </div>
 {% endfor %}

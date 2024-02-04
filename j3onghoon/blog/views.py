@@ -21,12 +21,8 @@ def new(request):
     return render(request, "blog/new.html")
 
 
-def post(request):
+def create_post(request):
     category = Category.objects.filter(id=request.POST.get("category")).first()
-    Post.objects.create정(title=request.POST.get("title"), content=request.POST.get("content"), category=category)
+    Post.objects.create(title=request.POST.get("title"), content=request.POST.get("new-post"), category=category)
     return redirect('blog:index')
 
-
-def review(request):
-    pass
-    return render(request, "blog/reveiw.html", context)

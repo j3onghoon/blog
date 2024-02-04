@@ -1,11 +1,7 @@
 {% extends "blog/base.html" %}
 
-{% block title %} 정훈이의 블로그 {% endblock %}
 {% block content %}
   {% if latest_post_list %}
-    <div class="d-flex flex-row-reverse">
-      <a href="{% url 'blog:new' %}"> <button class="btn btn-primary">새 글 작성하기</button> </a>
-    </div>
     {% for post in latest_post_list %}
       <div class="card mt-2">
         {{ post.title }}
