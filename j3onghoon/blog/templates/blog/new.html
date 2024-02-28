@@ -2,7 +2,7 @@
 
 {% block title %}새 글 작성하기{% endblock %}
 {% block content %}
-  <form method="post" action="{% url 'blog:post'%}">
+  <form method="post" action="{% url 'blog:create_post'%}">
     {% csrf_token %}
     <div class="d-flex">
     <input type="text" id="title" name="title" placeholder="제목">
