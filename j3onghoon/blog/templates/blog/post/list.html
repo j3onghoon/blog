@@ -1,10 +1,17 @@
 {% for post in posts %}
 <div class="card mt-3">
-  <div class="card-header">
-    {{ post.title }}
+  <div class="card-header d-flex justify-content-between">
+    <div>{{ post.title }}</div>
+    <div>{{ post.created }}</div>
   </div>
   <div class="card-body">
-    {{ post.content|safe }}
+    {% if post.content|wordcount > 20 %}
+      <p> {{ post.content | safe | truncatewords:20 }}
+        <a href="{% url 'blog:detail' post.id %}">더보기</a>
+      </p>
+    {% else %}
+      <p> {{ post.content | safe }} <a href="{% url 'blog:detail' post.id %}">수정하기</a> </p>
+    {% endif %}
   </div>
 </div>
 {% endfor %}
