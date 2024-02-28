@@ -23,7 +23,12 @@ def new(request):
 
 def create_post(request):
     category = Category.objects.filter(id=request.POST.get("category")).first()
-    Post.objects.create(title=request.POST.get("title"), content=request.POST.get("new-post"), category=category)
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    Post.objects.create(title=request.POST.get("title"), content=f'{request.POST.get("new-post")}\n{ip}', category=category)
     return redirect('blog:index')
 
 
