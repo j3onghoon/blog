@@ -26,3 +26,15 @@ def create_post(request):
     Post.objects.create(title=request.POST.get("title"), content=request.POST.get("new-post"), category=category)
     return redirect('blog:index')
 
+
+def update_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    category = Category.objects.filter(id=request.POST.get("category")).first()
+    title = request.POST.get("title")
+    content = request.POST.get("update-post")
+
+    post.title = title
+    post.content = content
+    post.category = category
+    post.save()
+    return redirect('blog:index')

@@ -1,4 +1,21 @@
 {% extends "blog/base.html" %}
 
-{% block title %} {{ post.title }} {% endblock %}
-{% block content %} {{ post.content }} {% endblock %}
+{% block content %}
+<form method="post" action="{% url 'blog:update_post' post.id %}">
+  {% csrf_token %}
+  <div class="d-flex">
+  <input type="text" id="title" name="title" placeholder="제목" value="{{ post.title }}">
+  <select class="ms-2" id="category" name="category">
+    {% for category in categories %}
+      <option value="{{ category.id }}">{{ category.name }}</option>
+    {% endfor %}
+  </select>
+  <button class="btn btn-primary" class="ms-2" type="submit">등록</button>
+  </div>
+  <div class="mt-2">
+    <textarea id="update-post" name="update-post">{{ post.content | safe }}</textarea>
+  </div>
+  <div>
+  </div>
+</form>
+{% endblock %}
