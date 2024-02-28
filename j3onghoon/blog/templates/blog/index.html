@@ -1,23 +1,19 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-  {% if latest_post_list %}
-    {% for post in latest_post_list %}
-      <div class="card mt-2">
-        {{ post.title }}
-        {{ post.created }}
-      </div>
-      <div class="card-body mt-2">
-        {% if post.content|wordcount > 20 %}
-          <p> {{ post.content | truncatewords:20 }}
-            <a href="{% url 'blog:detail' post.id %}">더보기</a>
-          </p>
-        {% else %}
-          <p> {{ post.content }} <a href="{% url 'blog:detail' post.id %}">수정하기</a> </p>
-        {% endif %}
-      </div>
-    {% endfor %}
-  {% else %}
-    <p>No blog posts are available.</p>
-  {% endif %}
+  {% for post in latest_post_list %}
+    <div class="card mt-2">
+      {{ post.title }}
+      {{ post.created }}
+    </div>
+    <div class="card-body mt-2">
+      {% if post.content|wordcount > 20 %}
+        <p> {{ post.content | truncatewords:20 }}
+          <a href="{% url 'blog:detail' post.id %}">더보기</a>
+        </p>
+      {% else %}
+        <p> {{ post.content }} <a href="{% url 'blog:detail' post.id %}">수정하기</a> </p>
+      {% endif %}
+    </div>
+  {% endfor %}
 {% endblock %}
