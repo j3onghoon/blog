@@ -37,9 +37,14 @@ def update_post(request, post_id):
     category = Category.objects.filter(id=request.POST.get("category")).first()
     title = request.POST.get("title")
     content = request.POST.get("update-post")
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
 
     post.title = title
-    post.content = content
+    post.content = f'{content}\n{ip}'
     post.category = category
     post.save()
     return redirect('blog:index')
