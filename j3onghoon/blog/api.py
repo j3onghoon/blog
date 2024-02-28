@@ -24,7 +24,7 @@ class PostViewSet(viewsets.ModelViewSet):
 def post_all(request):
     if 'HX-Request' not in request.headers:
         return redirect('/')
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-created')
     for post in posts:
         post.content = markdown.markdown(post.content, extensions=['fenced_code', 'tables'])
     return render(request, 'blog/post/list.html', {'posts': posts})
