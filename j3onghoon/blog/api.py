@@ -27,7 +27,7 @@ def post_all(request):
     posts = Post.objects.all()
     for post in posts:
         post.content = markdown.markdown(post.content, extensions=['fenced_code', 'tables'])
-    return render(request, 'blog/post/all.html', {'posts': posts})
+    return render(request, 'blog/post/list.html', {'posts': posts})
 
 
 def post_list(request):
