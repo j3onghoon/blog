@@ -1,10 +1,9 @@
 # from django.core.paginator import Paginator
-from datetime import timedelta
+from datetime import timedelta, datetime
 import markdown
 
 from django.db.models import Q
 from django.shortcuts import render, redirect
-from django.utils import timezone
 from rest_framework import serializers, viewsets
 
 from .models import Post
@@ -34,7 +33,7 @@ def post_list(request):
     RETENTION_CURVES = [1, 3, 6, 30, 90, 180]
     retention_curve = Q()
     for curve in RETENTION_CURVES:
-        retention_curve |= Q(updated__date=timezone.localdate() - timedelta(days=curve))
+        retention_curve |= Q(updated__date=datetime.now() - timedelta(days=curve))
     posts = Post.objects.filter(retention_curve)
     template = 'blog/post/list.html' if request.headers.get('HX-Request') else 'blog/post/index.html'
     return render(request, template, {'posts': posts})
