@@ -1,6 +1,5 @@
 {% extends "blog/base.html" %}
 
-{% block title %}새 글 작성하기{% endblock %}
 {% block content %}
   <form method="post" action="{% url 'blog:create_post'%}">
     {% csrf_token %}
