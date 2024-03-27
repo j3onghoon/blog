@@ -1,0 +1,21 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+PIDFile=/run/gunicorn/pid
+User=ubuntu
+Group=ubuntu
+RuntimeDirectory=gunicorn
+WorkingDirectory=/home/ubuntu/blog/j3onghoon
+ExecStart=/home/ubuntu/venv/bin/gunicorn --chdir /home/ubuntu/blog/j3onghoon -w 5 -t 5 --pid /run/gunicorn/pid --bind 0:8000 j3onghoon.wsgi --limit-request-field_size 0 --timeout 60 --graceful-timeout 60
+Environment="LC_CTYPE=en_US.UTF-8"
+Environment="DJANGO_SETTINGS_MODULE=j3onghoon.settings"
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+PrivateTmp=true
+LimitNOFILE=infinity
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
