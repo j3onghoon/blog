@@ -18,7 +18,7 @@ def detail(request, post_id):
 
 
 def new(request):
-    return render(request, "blog/new.html")
+    return render(request, "blog/post/new.html")
 
 
 def create_post(request):
