@@ -134,3 +134,5 @@ CSRF_TRUSTED_ORIGINS = [
     'https://j3onghoon.com',
     'http://j3onghoon.com'
 ]
+
+SECURE_SSL_REDIRECT = False
