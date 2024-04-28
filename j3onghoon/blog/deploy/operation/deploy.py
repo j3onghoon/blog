@@ -11,8 +11,8 @@ pip.packages(requirements='/home/ubuntu/blog/requirements.txt', virtualenv='/hom
 
 server.shell(commands=['/home/ubuntu/venv/bin/python3 /home/ubuntu/blog/j3onghoon/manage.py migrate'])
 
-files.put('j3onghoon/blog/deploy/nginx/nginx.conf', '/etc/nginx/sites-available/j3onghoon.com', _sudo=True)
-files.put('j3onghoon/blog/deploy/gunicorn/gunicorn.service', '/etc/systemd/system/gunicorn.service', _sudo=True)
+files.put('blog/deploy/nginx/nginx.conf', '/etc/nginx/sites-available/j3onghoon.com', _sudo=True)
+files.put('blog/deploy/gunicorn/gunicorn.service', '/etc/systemd/system/gunicorn.service', _sudo=True)
 systemd.daemon_reload(_sudo=True)
 
 systemd.service(service='gunicorn.service', reloaded=True, running=True, enabled=True, _sudo=True)
