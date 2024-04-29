@@ -1,0 +1,99 @@
+<style>
+  dl dt, dl dd{
+      white-space: nowrap;
+      display: inline-block;
+  }
+  dl dt::after {
+      content: ":";
+      margin-right: 5px;
+  }
+  dl div {
+      display: flex;
+  }
+  hr {
+      border-top: 2px dotted !important;
+  }
+  .link {
+      text-decoration: none;
+      color: black;
+      border-bottom: 2px solid #e3f2fd;
+  }
+
+</style>
+
+{% extends "blog/base.html" %}
+{% block content%}
+<h2>
+  기본 정보
+</h2>
+<hr/>
+<div class="profile">
+  <dl>
+    <div>
+      <dt>이름</dt><dd>박정훈</dd>
+    </div>
+    <div>
+      <dt>거주지</dt><dd>서울특별시 관악구</dd>
+    </div>
+    <div>
+      <dt>E-mail</dt><dd>park.j3onghoon@gmail.com</dd>
+    </div>
+    <div>
+      <dt>포지션</dt><dd>풀스택 웹 개발자</dd>
+    </div>
+    <div>
+      <dt>Links</dt><dd>GitHub</dd>
+    </div>
+  </dl>
+</div>
+<h2>
+  업무 경력
+</h2>
+<hr/>
+<h3><a href="http://www.mediquitous.com" class="link">Mediquitous</a></h3>
+<div>
+  <dl>
+    <div>
+      <dt>포지션</dt><dd>풀스택 개발자</dd>
+    </div>
+    <div>
+      <dt>근무기간</dt><dd>2024년 1월부터 </dd>
+    </div>
+    <div>
+      <dt>업무개요</dt><dd>Python Django 기반 백엔드 서버와 React/Svelte 기반 프론트엔드 개발 및 개선과 인프라 작업</dd>
+    </div>
+    <div>
+      <dt>업무내용</dt>
+      <dd><br/>
+        <h5>Python 백엔드 서버 개발</h5>
+        <dl>
+          <dt>주요 업무</dt>
+          <dd>
+            <ul><li>프론트엔드에서 사용할 수 있도록 DRF를 사용해서 api 개발 및 성능 개선을 했었습니다.</li></li></ul>
+          </dd>
+        </dl>
+        <h5>React 기반 프론트엔드 개발</h5>
+        <dl>
+          <dt>주요 업무</dt>
+          <dd>
+            <ul><li></li></ul>
+          </dd>
+        </dl>
+        <h5>Svelte 기반 프론트엔드 개발</h5>
+        <dl>
+          <dt>주요 업무</dt>
+          <dd><ul><li>관리자용 페이지를 만들고 필터 컴포넌트 리팩토링을 했습니다.</li></li></ul></dd>
+        </dl>
+      </dd>
+    </div>
+    <div>
+      <dt>Links</dt><dd>GitHub</dd>
+    </div>
+  </dl>
+</div>
+<hr/>
+
+
+{% endblock %}
+
+

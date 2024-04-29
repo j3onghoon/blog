@@ -37,3 +37,7 @@ def post_list(request):
     posts = Post.objects.filter(retention_curve)
     template = 'blog/post/list.html' if request.headers.get('HX-Request') else 'blog/post/index.html'
     return render(request, template, {'posts': posts})
+
+
+def resume(request):
+    return render(request, 'blog/resume.html', {})

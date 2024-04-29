@@ -16,6 +16,6 @@ files.put('blog/deploy/gunicorn/gunicorn.service', '/etc/systemd/system/gunicorn
 systemd.daemon_reload(_sudo=True)
 
 systemd.service(service='gunicorn.service', reloaded=True, running=True, enabled=True, _sudo=True)
-systemd.service(service='nginx.service', reloaded=True, enabled=True, _sudo=True)
 server.shell(commands=['sudo certbot --nginx'])
+systemd.service(service='nginx.service', reloaded=True, enabled=True, _sudo=True)
 

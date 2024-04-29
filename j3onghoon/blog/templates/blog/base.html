@@ -27,7 +27,7 @@
         <a class="navbar-brand" href="{% url 'blog:index' %}">정후니네 블로그</a>
         <div class="d-flex justify-content-end align-items-center me-2">
           <a class="nav-link me-2" aria-current="page" href="{% url 'blog:post_list' %}">Post</a>
-          <a class="nav-link me-2" href="#">Resume</a>
+          <a class="nav-link me-2" href="{% url 'blog:resume' %}">Resume</a>
           <a class="nav-link me-2" href="#">Contact</a>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
