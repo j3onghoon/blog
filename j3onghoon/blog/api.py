@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.shortcuts import render, redirect
 from rest_framework import serializers, viewsets
 
-from .models import Post
+from .models import Post, Work, WorkDetail, WorkKeyWord, KeyWord, Career
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -40,4 +40,17 @@ def post_list(request):
 
 
 def resume(request):
-    return render(request, 'blog/resume.html', {})
+    career_infos = []
+    for career in Career.objects.order_by('-start_date'):
+        career_info = {'career': career, 'work_infos': []}
+        for work in Work.objects.filter(career=career):
+            career_info['work_infos'].append({'work': work, 'work_detail': WorkDetail.objects.filter(work=work),
+                                              'work_keyword': KeyWord.objects.filter(
+                                                  id__in=WorkKeyWord.objects.filter(work=work).values_list('keyword',
+                                                                                                           flat=True))})
+
+        career_infos.append(career_info)
+
+    return render(request, 'blog/resume.html', {
+        'career_infos': career_infos
+    })
