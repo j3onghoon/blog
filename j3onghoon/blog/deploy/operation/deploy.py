@@ -9,6 +9,7 @@ git.repo('https://github.com/j3onghoon/blog.git', '/home/ubuntu/blog')
 pip.venv('/home/ubuntu/venv', python='python3')
 pip.packages(requirements='/home/ubuntu/blog/requirements.txt', virtualenv='/home/ubuntu/venv')
 
+# ssh -i /Users/parkjeonghoon/Downloads/j3onghoon.pem ubuntu@ec2-3-37-82-42.ap-northeast-2.compute.amazonaws.com
 server.shell(commands=['/home/ubuntu/venv/bin/python3 /home/ubuntu/blog/j3onghoon/manage.py migrate'])
 
 files.put('j3onghoon/blog/deploy/nginx/nginx.conf', '/etc/nginx/sites-available/j3onghoon.com', _sudo=True)
